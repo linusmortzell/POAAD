@@ -1,0 +1,14 @@
+<header>
+  <nav class="navbar">
+    <div class="navbar-item home"><a href="/">Sticky Snippets</a></div>
+    <div class="navbar-item"><a href="/">Home</a></div>
+    <div class="navbar-item"><a href="/snippets">Snippets</a></div>
+    <div class="navbar-auth"><a href="/signup">Sign up</a></div>
+    {{#if authenticated}}
+    <div class="navbar-item"><a href="/logout">Logout</a></div>
+    <div class="navbar-user">Signed in as: {{authenticated.username}}</div>
+    {{else}}
+    <div class="navbar-auth"><a href="/login">Login</a></div> 
+    {{/if}}
+  </nav>
+</header>

@@ -16,5 +16,10 @@
     "url": "https://github.com/linusmortzell/POOAD/issues"
   },
   "homepage": "https://github.com/linusmortzell/POOAD#readme",
-  "dependencies": {}
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "express-hbs": "^2.1.2",
+    "path": "^0.12.7"
+  }
 }

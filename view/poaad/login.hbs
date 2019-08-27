@@ -1,0 +1,21 @@
+<div class="auth">
+  <p class="auth-text">Type your username and password to login</p>
+  <form method="post" action="/login" class="form-auth">
+    <fieldset class="auth-items">
+      <p>
+        <label for="username">Username</label>
+        <input type="string" id="username" name="username" value="{{username}}" placeholder="Username" required autofocus />
+      </p>
+      <p>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" value="{{password}}" placeholder="Password" required />
+      </p>
+      <p>
+        <label></label>
+        <button type="submit" class="btn">Login</button>
+      </p>
+    </fieldset>
+    <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+  </form>
+  <p>{{>flash}}</p>
+</div>
