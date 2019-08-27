@@ -12,6 +12,7 @@ const router = express.Router()
 
 const controller = require('../controllers/poaadController')
 
-router.get('/', controller.getLogin)
+router.get('/', controller.getIndex)
+router.get('/map', controller.getMap)
 
 module.exports = router

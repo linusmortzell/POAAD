@@ -8,7 +8,7 @@
 'use strict'
 
 require('dotenv').config()
-// const mongoose = require('./config/mongoose')
+const mongoose = require('./config/mongoose')
 const express = require('express')
 const hbs = require('express-hbs')
 // const logger = require('morgan')
@@ -24,10 +24,10 @@ app.use(helmet.contentSecurityPolicy({
   directives: {
     scriptSrc: ["'self'"]
   }
-}))
+})) */
 
 // Connect to database
-mongoose() */
+mongoose()
 
 // View engine setup
 app.engine('hbs', hbs.express4({
@@ -36,7 +36,7 @@ app.engine('hbs', hbs.express4({
 }))
 
 app.set('view engine', 'hbs') // Declare view engine
-app.set('views', path.join(__dirname, 'views')) // Path to view caltalogue
+app.set('views', path.join(__dirname, '/views')) // Path to view caltalogue
 
 /* // Setup session
 const sessionOptions = {
@@ -74,8 +74,8 @@ app.use(require('csurf')()) */
 }) */
 
 // Routes
-app.use('/', require('./routes/homeRouter'))
 app.use('/', require('./routes/poaadRouter'))
+app.use('/', require('./routes/userRouter'))
 
 // Catch 404
 app.use((req, res, next) => res.status(404).render('errors/404'))

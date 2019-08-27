@@ -1,0 +1,25 @@
+<div class="auth">
+  <p class="auth-text">Choose a username and password to create a user</p>
+  <form method="post" action="/signup" class="form-auth">
+    <fieldset class="auth-items">
+      <p>
+        <label for="username">Username</label>
+        <input type="string" id="username" name="username" value="{{username}}" placeholder="Username" maxlength="22" required autofocus />
+      </p>
+      <p>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" value="{{password}}" placeholder="Password" required />
+      </p>
+      <p>
+        <label for="password">Admin?</label>
+        <input type="password" id="admin" name="admin" value="{{check}}" placeholder="Password" required />
+      </p>
+      <p>
+        <label></label>
+        <button type="submit" class="btn">Sign up</button>
+      </p>
+    </fieldset>
+    <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+  </form>
+  </p>{{>flash}}</p>
+</div>

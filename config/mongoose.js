@@ -19,5 +19,5 @@ module.exports = () => {
 
   db.on('error', console.error.bind(console, 'connection error:'))
   db.on('disconnect', () => console.log('Lost connection to mongodb'))
-  db.once('open', () => console.log("We're connected!"))
+  db.once('open', () => console.log('Successfully connected to database!'))
 }

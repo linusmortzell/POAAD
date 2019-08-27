@@ -11,11 +11,9 @@
         <input type="password" id="password" name="password" value="{{password}}" placeholder="Password" required />
       </p>
       <p>
-        <label></label>
         <button type="submit" class="btn">Login</button>
       </p>
     </fieldset>
-    <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+    <!-- input type="hidden" name="_csrf" value="{{_csrfToken}}"> <p>{{>flash}}</p> -->
   </form>
-  <p>{{>flash}}</p>
 </div>

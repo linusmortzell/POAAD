@@ -12,12 +12,16 @@ const poaadController = {}
 /**
  * index GET
  */
-poaadController.getLogin = (req, res, next) => {
-  res.render('pooad/login')
+poaadController.getIndex = (req, res, next) => {
+  res.render('poaad/index')
   /* if (req.session.authenticated) {
     let authenticated = { username: req.session.username }
     res.render('stickySnippets/index', { authenticated })
   } else res.render('stickySnippets/index') */
+}
+
+poaadController.getMap = (req, res, next) => {
+  res.render('poaad/map')
 }
 
 module.exports = poaadController
