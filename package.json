@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/linusmortzell/POOAD/issues"
   },
-  "homepage": "https://github.com/linusmortzell/POOAD#readme"
+  "homepage": "https://github.com/linusmortzell/POOAD#readme",
+  "dependencies": {}
 }
