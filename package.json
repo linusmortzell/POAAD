@@ -1,0 +1,19 @@
+{
+  "name": "pooad",
+  "version": "1.0.0",
+  "description": "Plotter on almost any device",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linusmortzell/POOAD.git"
+  },
+  "author": "Linus Mortzell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/linusmortzell/POOAD/issues"
+  },
+  "homepage": "https://github.com/linusmortzell/POOAD#readme"
+}
