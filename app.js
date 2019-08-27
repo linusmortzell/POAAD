@@ -16,7 +16,7 @@ const path = require('path')
 const app = express()
 // const session = require('express-session')
 // const helmet = require('helmet')
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 8088
 
 /* // Setup helmet
 app.use(helmet())
@@ -24,7 +24,7 @@ app.use(helmet.contentSecurityPolicy({
   directives: {
     scriptSrc: ["'self'"]
   }
-})) 
+}))
 
 // Connect to database
 mongoose() */
@@ -58,15 +58,15 @@ app.use((req, res, next) => {
   res.locals.flash = req.session.flash
   delete req.session.flash
   next()
-}) */
+})
 
 // Additional middleware
-app.use(logger('dev'))
+app.use(logger('dev')) */
 app.use(express.urlencoded({ extended: false }))
 app.use('/', express.static(path.join(__dirname, 'public')))
 
-// Setup csurf token
-app.use(require('csurf')())
+/* // Setup csurf token
+app.use(require('csurf')()) */
 
 /* app.use((req, res, next) => {
   res.locals._csrfToken = req.csrfToken()

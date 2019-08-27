@@ -4,7 +4,8 @@
   "description": "Plotter on almost any device",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,10 @@
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "express-hbs": "^2.1.2",
+    "mongoose": "^5.6.11",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "standard": "^14.0.2"
   }
 }
