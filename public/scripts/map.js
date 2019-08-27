@@ -21,7 +21,8 @@ var map = new ol.Map({
     zoom: 12
   })
 })
-var isobaths = new ol.layer.Image({
+
+/* var isobaths = new ol.layer.Image({
   source: new ol.source.ImageWMS({
     url: 'http://localhost:8000/geoserver/BlavikensFVO/wms',
     params: { LAYERS: 'BlavikensFVO:BlavikensFVO_1_20_250_Isobaths' },
@@ -36,4 +37,4 @@ var major = new ol.layer.Image({
   })
 })
 map.addLayer(isobaths)
-map.addLayer(major)
+map.addLayer(major) */

@@ -2,6 +2,59 @@ body {
   background-color: #eeeeee
 }
 
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-item {
+  color: #aaa;
+  padding-right: 30px;
+  font-size: 20px;
+}
+
+.navbar-auth {
+  padding-right: 20px;
+  font-size: 20px;
+}
+
+.navbar-user {
+  font-size: 14px;
+  color: white;
+  text-align: right;
+  flex: 1;
+  padding-right: 85px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link {
+  color: #aaa;
+}
+
+a:visited {
+  color: #aaa;
+}
+
+a:hover {
+  color: #ccc;
+}
+
+.home a:link {
+  color: #aaa;
+}
+
+.home a:visited {
+  color: #aaa;
+}
+
+.home {
+  font-size: 40px;
+  color: #ddd;
+}
+
 #map {
   border: 2px solid black;
   margin: 10px;

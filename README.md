@@ -1,4 +1,4 @@
-# POOAD
+# POAAD
 Plotter on almost any device
 
 The first version of my chart plotter application. 
