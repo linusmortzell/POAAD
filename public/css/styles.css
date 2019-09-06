@@ -1,5 +1,7 @@
 body {
-  background-color: #eeeeee
+  background-color: #eeeeee;
+  font-family: Arial;
+  font-weight: 800;
 }
 
 .navbar {
@@ -62,9 +64,9 @@ a:hover {
 }
 
 #marker {
-  background-color: lightblue;
-  width: 10px;
-  height: 10px;
-  border: 2px solid blue;
+  background-color: #00ff08;
+  width: 15px;
+  height: 15px;
+  border: 3px solid #008004;
   border-radius: 50%;
 }

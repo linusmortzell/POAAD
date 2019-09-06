@@ -8,9 +8,20 @@
 'use strict'
 
 var zoom = 16
+var map
+var marker
+var blavik = [18.087922, 64.870118]
 
 if (navigator.geolocation) {
+  getPosition()
+    .then((position) => {
+      console.log(position)
+    })
+    .catch((err) => {
+      console.error(err.message)
+    })
   navigator.geolocation.getCurrentPosition(success, error)
+  navigator.geolocation.watchPosition(updatePos, error)
 } else {
   alert('Your browser doesn\'t support geolocation')
 }
@@ -19,14 +30,31 @@ function success (position) {
   var lon = position.coords.longitude
   var lat = position.coords.latitude
 
-  // var lonLat = OSMlonLat(lon, lat)
+  var pos = ol.proj.fromLonLat(blavik)
+  createMap(pos)
+  createMarker(pos)
 
-  // map.addLayer(markers)
-  // markers.addMarker(new OpenLayers.Marker(lonLat))
+  var blavikensFVO = new ol.layer.Image({
+    source: new ol.source.ImageWMS({
+      url: 'http://localhost:8080/geoserver/BlavikensFVO/wms',
+      params: { LAYERS: 'BlavikensFVO:BlavikensFVO_grupp' },
+      serverType: 'geoserver'
+    })
+  })
 
-  var pos = ol.proj.fromLonLat([lon, lat])
+  map.addLayer(blavikensFVO)
+}
 
-  var map = new ol.Map({
+function error (error) {
+  alert('Sorry, an error occured: ' + error)
+}
+
+function updatePos () {
+  alert('You moved!')
+}
+
+function createMap (pos) {
+  map = new ol.Map({
     target: 'map',
     layers: [
       new ol.layer.Tile({
@@ -35,46 +63,32 @@ function success (position) {
     ],
     view: new ol.View({
       center: pos,
-      zoom: 17
+      zoom: zoom
     })
   })
+}
 
-  var marker = new ol.Overlay({
+function createMarker (pos) {
+  marker = new ol.Overlay({
     position: pos,
     positioning: 'center-center',
-    element: document.getElementById('marker'),
+    element: document.querySelector('#marker'),
     stopEvent: false
   })
   map.addOverlay(marker)
-
-  // navigator.geolocation.watchPosition(updatePos, error)
 }
 
-function error (error) {
-  alert('Sorry, an error occured: ' + error)
-}
-
-function updatePos (pos) {
-  
-}
-
-function OSMlonLat (lon, lat) {
-  var lonLat = new OpenLayers.LonLat( lon, lat).transform(
-    new OpenLayers.Projection('EPSG:4326'), // transform from WGS 1984
-    map.getProjectionObject() // to Spherical Mercator Projection
-  )
-  return lonLat
-}
-
-function getPosition () {
-  navigator.geolocation.getCurrentPosition(success, error)
+function getPosition (options) {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject, options)
+  })
 }
 
 /*
  var isobaths = new ol.layer.Image({
   source: new ol.source.ImageWMS({
     url: 'http://localhost:8000/geoserver/BlavikensFVO/wms',
-    params: { LAYERS: 'BlavikensFVO:BlavikensFVO_1_20_250_Isobaths' },
+    params: { LAYERS: 'BlavikensFVO:BlavikensFVO_grupp' },
     serverType: 'geoserver'
   })
 })
