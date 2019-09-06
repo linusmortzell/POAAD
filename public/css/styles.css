@@ -60,3 +60,11 @@ a:hover {
   margin: 5px;
   height: 80vh;
 }
+
+#marker {
+  background-color: lightblue;
+  width: 10px;
+  height: 10px;
+  border: 2px solid blue;
+  border-radius: 50%;
+}

@@ -7,8 +7,6 @@
 
 'use strict'
 
-var markers = new OpenLayers.Layer.Markers('Markers')
-var map = new OpenLayers.Map('map')
 var zoom = 16
 
 if (navigator.geolocation) {
@@ -21,13 +19,33 @@ function success (position) {
   var lon = position.coords.longitude
   var lat = position.coords.latitude
 
-  map.addLayer(new OpenLayers.Layer.OSM())
+  // var lonLat = OSMlonLat(lon, lat)
 
-  var lonLat = OSMlonLat(lon, lat)
+  // map.addLayer(markers)
+  // markers.addMarker(new OpenLayers.Marker(lonLat))
 
-  map.addLayer(markers)
-  markers.addMarker(new OpenLayers.Marker(lonLat))
-  map.setCenter(lonLat, zoom)
+  var pos = ol.proj.fromLonLat([lon, lat])
+
+  var map = new ol.Map({
+    target: 'map',
+    layers: [
+      new ol.layer.Tile({
+        source: new ol.source.OSM()
+      })
+    ],
+    view: new ol.View({
+      center: pos,
+      zoom: 17
+    })
+  })
+
+  var marker = new ol.Overlay({
+    position: pos,
+    positioning: 'center-center',
+    element: document.getElementById('marker'),
+    stopEvent: false
+  })
+  map.addOverlay(marker)
 
   // navigator.geolocation.watchPosition(updatePos, error)
 }
@@ -52,7 +70,8 @@ function getPosition () {
   navigator.geolocation.getCurrentPosition(success, error)
 }
 
-/* var isobaths = new ol.layer.Image({
+/*
+ var isobaths = new ol.layer.Image({
   source: new ol.source.ImageWMS({
     url: 'http://localhost:8000/geoserver/BlavikensFVO/wms',
     params: { LAYERS: 'BlavikensFVO:BlavikensFVO_1_20_250_Isobaths' },
