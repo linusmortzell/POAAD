@@ -13,13 +13,6 @@ var marker
 var blavik = [18.087922, 64.870118]
 
 if (navigator.geolocation) {
-  getPosition()
-    .then((position) => {
-      console.log(position)
-    })
-    .catch((err) => {
-      console.error(err.message)
-    })
   navigator.geolocation.getCurrentPosition(success, error)
   navigator.geolocation.watchPosition(updatePos, error)
 } else {
@@ -27,22 +20,11 @@ if (navigator.geolocation) {
 }
 
 function success (position) {
-  var lon = position.coords.longitude
-  var lat = position.coords.latitude
+  var coords = [position.coords.longitude, position.coords.latitude]
 
-  var pos = ol.proj.fromLonLat(blavik)
+  var pos = getOlProj(coords)
   createMap(pos)
   createMarker(pos)
-
-  var blavikensFVO = new ol.layer.Image({
-    source: new ol.source.ImageWMS({
-      url: 'http://localhost:8080/geoserver/BlavikensFVO/wms',
-      params: { LAYERS: 'BlavikensFVO:BlavikensFVO_grupp' },
-      serverType: 'geoserver'
-    })
-  })
-
-  map.addLayer(blavikensFVO)
 }
 
 function error (error) {
@@ -50,7 +32,18 @@ function error (error) {
 }
 
 function updatePos () {
-  alert('You moved!')
+  getPosition()
+    .then((position) => {
+      console.log(position)
+      var pos = getOlProj([position.coords.longitude, position.coords.latitude])
+      map.setView(new ol.View({
+        center: pos,
+        zoom: zoom
+      }))
+    })
+    .catch((err) => {
+      console.error(err.message)
+    })
 }
 
 function createMap (pos) {
@@ -66,6 +59,16 @@ function createMap (pos) {
       zoom: zoom
     })
   })
+
+  var blavikensFVO = new ol.layer.Image({
+    source: new ol.source.ImageWMS({
+      url: 'http://localhost:8080/geoserver/BlavikensFVO/wms',
+      params: { LAYERS: 'BlavikensFVO:BlavikensFVO_grupp' },
+      serverType: 'geoserver'
+    })
+  })
+
+  map.addLayer(blavikensFVO)
 }
 
 function createMarker (pos) {
@@ -82,6 +85,10 @@ function getPosition (options) {
   return new Promise(function (resolve, reject) {
     navigator.geolocation.getCurrentPosition(resolve, reject, options)
   })
+}
+
+function getOlProj (position) {
+  return ol.proj.fromLonLat([position[0], position[1]])
 }
 
 /*
