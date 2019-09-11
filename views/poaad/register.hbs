@@ -1,6 +1,6 @@
 <div class="auth">
   <p class="auth-text">Choose a username and password to create a user</p>
-  <form method="post" action="/signup" class="form-auth">
+  <form method="post" action="/register" class="form-auth">
     <fieldset class="auth-items">
       <p>
         <label for="username">Username</label>
@@ -9,10 +9,6 @@
       <p>
         <label for="password">Password</label>
         <input type="password" id="password" name="password" value="{{password}}" placeholder="Password" required />
-      </p>
-      <p>
-        <label for="password">Admin?</label>
-        <input type="password" id="admin" name="admin" value="{{check}}" placeholder="Password" required />
       </p>
       <p>
         <label></label>

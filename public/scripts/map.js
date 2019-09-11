@@ -7,7 +7,7 @@
 
 'use strict'
 
-var zoom = 16
+var resolution = 3.92
 var map
 var marker
 var blavik = [18.087922, 64.870118]
@@ -32,14 +32,15 @@ function error (error) {
 }
 
 function updatePos () {
+  console.log(map.getView().getProperties())
   getPosition()
     .then((position) => {
-      console.log(position)
       var pos = getOlProj([position.coords.longitude, position.coords.latitude])
       map.setView(new ol.View({
         center: pos,
-        zoom: zoom
+        resolution: resolution
       }))
+      marker.setPosition(pos)
     })
     .catch((err) => {
       console.error(err.message)
@@ -56,7 +57,7 @@ function createMap (pos) {
     ],
     view: new ol.View({
       center: pos,
-      zoom: zoom
+      resolution: resolution
     })
   })
 
@@ -69,6 +70,7 @@ function createMap (pos) {
   })
 
   map.addLayer(blavikensFVO)
+  map.on('postrender', e => { resolution = e.frameState.viewState.resolution })
 }
 
 function createMarker (pos) {

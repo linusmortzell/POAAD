@@ -14,7 +14,7 @@ const hbs = require('express-hbs')
 // const logger = require('morgan')
 const path = require('path')
 const app = express()
-// const session = require('express-session')
+const session = require('express-session')
 // const helmet = require('helmet')
 const port = process.env.PORT || 8088
 
@@ -38,7 +38,7 @@ app.engine('hbs', hbs.express4({
 app.set('view engine', 'hbs') // Declare view engine
 app.set('views', path.join(__dirname, '/views')) // Path to view caltalogue
 
-/* // Setup session
+// Setup session
 const sessionOptions = {
   name: 'stksnpseso',
   secret: 'a2b4c6d8e10f12',
@@ -61,7 +61,7 @@ app.use((req, res, next) => {
 })
 
 // Additional middleware
-app.use(logger('dev')) */
+// app.use(logger('dev'))
 app.use(express.urlencoded({ extended: false }))
 app.use('/', express.static(path.join(__dirname, 'public')))
 

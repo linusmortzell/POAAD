@@ -13,7 +13,7 @@ const mongoose = require('mongoose')
  * Mongodb connection.
  */
 module.exports = () => {
-  mongoose.connect(`mongodb+srv://admin:${process.env.DB_PASS}@lm-1tkxy.mongodb.net/test?retryWrites=true&w=majority`, { useNewUrlParser: true })
+  mongoose.connect(`mongodb+srv://admin:${process.env.DB_PASS}@lm-1tkxy.mongodb.net/poaad?retryWrites=true&w=majority`, { useNewUrlParser: true })
 
   var db = mongoose.connection
 

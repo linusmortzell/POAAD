@@ -2,8 +2,12 @@
   <nav class="navbar">
     <div class="navbar-item home"><a href="/">POAAD</a></div>
     <div class="navbar-item"><a href="/">Home</a></div>
+    {{#if authenticated}}
     <div class="navbar-item"><a href="/map">View map</map></a></div>
-    <div class="navbar-auth"><a href="/signup">Sign up</a></div>
+    {{/if}}
+    {{#if authenticated.admin}}
+    <div class="navbar-auth"><a href="/register">Register user</a></div>
+    {{/if}}
     {{#if authenticated}}
     <div class="navbar-item"><a href="/logout">Logout</a></div>
     <div class="navbar-user">Signed in as: {{authenticated.username}}</div>
