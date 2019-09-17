@@ -1,18 +1,21 @@
-<header>
-  <nav class="navbar">
+<nav class="navbar">
     <div class="navbar-item home"><a href="/">POAAD</a></div>
-    <div class="navbar-item"><a href="/">Home</a></div>
     {{#if authenticated}}
     <div class="navbar-item"><a href="/map">View map</map></a></div>
     {{/if}}
     {{#if authenticated.admin}}
-    <div class="navbar-auth"><a href="/register">Register user</a></div>
+    <div class="navbar-register"><a href="/register">Register user</a></div>
     {{/if}}
-    {{#if authenticated}}
-    <div class="navbar-item"><a href="/logout">Logout</a></div>
-    <div class="navbar-user"><img src="./images/user.png" alt="Userpicture" class="user"><p>{{authenticated.username}}</p></div>
-    {{else}}
-    <div class="navbar-auth"><a href="/login">Login</a></div> 
-    {{/if}}
+    <div class="navbar-user">
+      <img src="./images/user.png" alt="Userpicture" class="user">
+      {{#if authenticated}}
+      <div class="navbar-auth">
+        <p id="username">{{authenticated.username}}</p>
+        <p><a href="/logout">Logout</a></p>
+      </div>
+    </div>
+      {{else}}
+      <p><a href="/login">Login</a></p>
+    </div>
+      {{/if}}
   </nav>
-</header>
