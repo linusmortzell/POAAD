@@ -23,11 +23,13 @@ poaadController.getIndex = (req, res, next) => {
 }
 
 poaadController.getMap = (req, res, next) => {
-  res.render('poaad/map')
-}
-
-poaadController.logout = (req, res, next) => {
-  res.render('poaad/index')
+  if (req.session.authenticated) {
+    var authenticated = { username: req.session.username }
+    if (req.session.admin) {
+      authenticated.admin = true
+    }
+    res.render('poaad/map', { authenticated })
+  } else res.render('errors/403')
 }
 
 module.exports = poaadController

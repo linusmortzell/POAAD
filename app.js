@@ -11,7 +11,6 @@ require('dotenv').config()
 const mongoose = require('./config/mongoose')
 const express = require('express')
 const hbs = require('express-hbs')
-// const logger = require('morgan')
 const path = require('path')
 const app = express()
 const session = require('express-session')
@@ -61,7 +60,6 @@ app.use((req, res, next) => {
 })
 
 // Additional middleware
-// app.use(logger('dev'))
 app.use(express.urlencoded({ extended: false }))
 app.use('/', express.static(path.join(__dirname, 'public')))
 

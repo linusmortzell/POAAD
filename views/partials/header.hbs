@@ -10,7 +10,7 @@
     {{/if}}
     {{#if authenticated}}
     <div class="navbar-item"><a href="/logout">Logout</a></div>
-    <div class="navbar-user">Signed in as: {{authenticated.username}}</div>
+    <div class="navbar-user"><img src="./images/user.png" alt="Userpicture" class="user"><p>{{authenticated.username}}</p></div>
     {{else}}
     <div class="navbar-auth"><a href="/login">Login</a></div> 
     {{/if}}

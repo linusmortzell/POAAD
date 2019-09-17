@@ -51,11 +51,11 @@ userController.postLogin = async (req, res, next) => {
  * register GET
  */
 userController.getRegister = (req, res, next) => {
-  let authenticated
-  if (req.session.authenticated) {
-    authenticated = { username: req.session.username }
-  }
-  res.render('poaad/register', { authenticated })
+  if (req.session.admin) {
+    var authenticated = { username: req.session.username }
+    authenticated.admin = true
+    res.render('poaad/register', { authenticated })
+  } else res.render('errors/403')
 }
 
 /**
@@ -87,6 +87,11 @@ userController.postRegister = async (req, res, next) => {
       next(err)
     }
   })
+}
+
+userController.logout = (req, res, next) => {
+  req.session.destroy()
+  res.redirect('/')
 }
 
 module.exports = userController

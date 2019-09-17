@@ -10,7 +10,7 @@
 var resolution = 3.92
 var map
 var marker
-var blavik = [18.087922, 64.870118]
+// var blavik = [18.087922, 64.870118]
 
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(success, error)
@@ -21,6 +21,7 @@ if (navigator.geolocation) {
 
 function success (position) {
   var coords = [position.coords.longitude, position.coords.latitude]
+  // var coords = blavik
 
   var pos = getOlProj(coords)
   createMap(pos)
@@ -32,7 +33,6 @@ function error (error) {
 }
 
 function updatePos () {
-  console.log(map.getView().getProperties())
   getPosition()
     .then((position) => {
       var pos = getOlProj([position.coords.longitude, position.coords.latitude])
@@ -92,21 +92,3 @@ function getPosition (options) {
 function getOlProj (position) {
   return ol.proj.fromLonLat([position[0], position[1]])
 }
-
-/*
- var isobaths = new ol.layer.Image({
-  source: new ol.source.ImageWMS({
-    url: 'http://localhost:8000/geoserver/BlavikensFVO/wms',
-    params: { LAYERS: 'BlavikensFVO:BlavikensFVO_grupp' },
-    serverType: 'geoserver'
-  })
-})
-var major = new ol.layer.Image({
-  source: new ol.source.ImageWMS({
-    url: 'http://localhost:8000/geoserver/BlavikensFVO/wms',
-    params: { LAYERS: 'BlavikensFVO:BlavikensFVO_1_20_250_Major' },
-    serverType: 'geoserver'
-  })
-})
-map.addLayer(isobaths)
-map.addLayer(major) */
