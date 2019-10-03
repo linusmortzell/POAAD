@@ -69,7 +69,16 @@ function createMap (pos) {
     })
   })
 
+  var halla = new ol.layer.Image({
+    source: new ol.source.ImageWMS({
+      url: 'http://localhost:8080/geoserver/Halla/wms',
+      params: { LAYERS: 'Halla:Halla_grupp' },
+      serverType: 'geoserver'
+    })
+  })
+
   map.addLayer(blavikensFVO)
+  map.addLayer(halla)
   map.on('postrender', e => { resolution = e.frameState.viewState.resolution })
 }
 
